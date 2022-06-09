@@ -1,0 +1,16 @@
+.pcm_ads_shortcode {
+    width: 70%;
+}
+
+.pcm_ads_shortcode tr td, .pcm_ads_shortcode tr th {
+    padding: 10px;
+}
+
+.pcm_ads_shortcode tr th {
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+
+#pcm_ads_options_google_publisher_tag {
+    width: 30%;
+}
