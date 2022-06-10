@@ -30,16 +30,28 @@ function google_add_shortcodes_callback_section() {
                     <td> [pcm_webskin] </td>
                 </tr>
                 <tr>
-                    <td> Main Leaderboard</td>
-                    <td> [pcm_main_leaderboard] </td>
+                    <td> First Leaderboard</td>
+                    <td> [pcm_leaderboard_one] </td>
                 </tr>
                 <tr>
-                    <td> Secondary Leaderboard</td>
-                    <td> [pcm_secondary_leaderboard] </td>
+                    <td> Second Leaderboard</td>
+                    <td> [pcm_leaderboard_two] </td>
+                </tr>
+                <tr>
+                    <td> Third Leaderboard</td>
+                    <td> [pcm_leaderboard_three] </td>
+                </tr>
+                <tr>
+                    <td> Fourth Leaderboard</td>
+                    <td> [pcm_leaderboard_four] </td>
                 </tr>
                 <tr>
                     <td> Mrecs</td>
-                    <td> [pcm_ads_mrecs] </td>
+                    <td> [pcm_mrecs] </td>
+                </tr>
+                <tr>
+                    <td> Half Page</td>
+                    <td> [pcm_halfpage] </td>
                 </tr>
             </table>";
         

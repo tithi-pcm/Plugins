@@ -88,12 +88,20 @@ add_shortcode('pcm_webskin', 'pcm_webskin');
 
 
 //custom ad leaderboard shortcode
-function pcm_main_leaderboard () { 
+function pcm_leaderboard_one () { 
 	return pcm_leaderboards('nbanner1');
 }
 
-function pcm_secondary_leaderboard () { 
+function pcm_leaderboard_two () { 
 	return pcm_leaderboards('nbanner2');
+}
+
+function pcm_leaderboard_three () { 
+	return pcm_leaderboards('nbanner3');
+}
+
+function pcm_leaderboard_four () { 
+	return pcm_leaderboards('nbanner4');
 }
 
 function pcm_leaderboards ( $args ) {
@@ -135,8 +143,10 @@ function pcm_leaderboards ( $args ) {
 
     return $result;
 }
-add_shortcode('pcm_main_leaderboard', 'pcm_main_leaderboard');
-add_shortcode('pcm_secondary_leaderboard', 'pcm_secondary_leaderboard');
+add_shortcode('pcm_leaderboard_one', 'pcm_leaderboard_one');
+add_shortcode('pcm_leaderboard_two', 'pcm_leaderboard_two');
+add_shortcode('pcm_leaderboard_three', 'pcm_leaderboard_three');
+add_shortcode('pcm_leaderboard_four', 'pcm_leaderboard_four');
 
 
 //custom ad mrecs shortcode
@@ -163,14 +173,47 @@ function pcm_ads_mrecs () {
                 });
             </script>";
 
-        foreach($div_ids as $id) {
-            $result .= "<div id='". $id ."' class='pcm_mrec'>
-                            <script>
-                                googletag.cmd.push(function() { googletag.display('". $id ."'); });
-                            </script>
-                        </div>";
-        }
+    foreach($div_ids as $id) {
+        $result .= "<div id='". $id ."' class='pcm_mrec'>
+                        <script>
+                            googletag.cmd.push(function() { googletag.display('". $id ."'); });
+                        </script>
+                    </div>";
+    }
 
     return $result;
 }
-add_shortcode('pcm_ads_mrecs', 'pcm_ads_mrecs');
+add_shortcode('pcm_mrecs', 'pcm_ads_mrecs');
+
+
+//custom ad halfpage shortcode
+function pcm_halfpage () {
+    $div_id = "div-gpt-ad-". rand(1000000000000, 1) ."-0";
+    $options = get_option('pcm_ads_options');
+    
+    if ( empty( $options['google_publisher_tag'] ) )
+        return;
+
+    $google_publisher_tag = $options['google_publisher_tag'];
+    $halfpage_size = "[300, 600]";
+
+    $result = "<script>
+                window.googletag = window.googletag || {cmd: []};
+                googletag.cmd.push(function() {
+                    googletag.pubads().collapseEmptyDivs();
+                    googletag.defineSlot('". $google_publisher_tag ."', ". $halfpage_size .", '". $div_id ."')
+                        .setTargeting('pos', ['halfpage'])
+                        .addService(googletag.pubads());
+                    googletag.pubads().enableSingleRequest();
+                    googletag.enableServices();
+                });
+            </script>
+            <div id='". $div_id ."' class='pcm_mrec'>
+                <script>
+                    googletag.cmd.push(function() { googletag.display('". $div_id ."'); });
+                </script>
+            </div>";
+
+    return $result;
+}
+add_shortcode('pcm_halfpage', 'pcm_halfpage');
